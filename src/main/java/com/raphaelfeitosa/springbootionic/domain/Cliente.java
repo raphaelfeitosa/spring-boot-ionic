@@ -1,5 +1,6 @@
 package com.raphaelfeitosa.springbootionic.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.raphaelfeitosa.springbootionic.enums.TipoCliente;
 
 import javax.persistence.*;
@@ -17,12 +18,13 @@ public class Cliente implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private String nome;
     private String email;
     private String cpfOuCnpj;
     private Integer tipo;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "cliente")
     private List<Endereco> enderecos = new ArrayList<>();
 
@@ -32,7 +34,7 @@ public class Cliente implements Serializable {
 
     public Cliente(){}
 
-    public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoCliente tipo) {
+    public Cliente(Long id, String nome, String email, String cpfOuCnpj, TipoCliente tipo) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -40,11 +42,11 @@ public class Cliente implements Serializable {
         this.tipo = tipo.getCod();
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

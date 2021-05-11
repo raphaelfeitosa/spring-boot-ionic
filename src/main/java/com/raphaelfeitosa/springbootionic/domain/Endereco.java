@@ -1,5 +1,6 @@
 package com.raphaelfeitosa.springbootionic.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.raphaelfeitosa.springbootionic.enums.TipoCliente;
 
 import javax.persistence.*;
@@ -21,6 +22,7 @@ public class Endereco implements Serializable {
     private String cep;
 
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
