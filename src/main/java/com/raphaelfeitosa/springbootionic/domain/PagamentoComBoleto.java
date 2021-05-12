@@ -14,10 +14,10 @@ public class PagamentoComBoleto  extends Pagamento{
 
     private static final long serialVersionUID = 1L;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd")
     private LocalDateTime dataVencimento;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd")
     private LocalDate dataPamento;
 
     public PagamentoComBoleto(){}

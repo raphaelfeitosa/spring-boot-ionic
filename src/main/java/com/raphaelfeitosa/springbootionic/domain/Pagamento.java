@@ -1,5 +1,6 @@
 package com.raphaelfeitosa.springbootionic.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.raphaelfeitosa.springbootionic.enums.EstadoPagamento;
 
 import javax.persistence.*;
@@ -17,6 +18,7 @@ public abstract class Pagamento implements Serializable {
     private Long id;
     private Integer estado;
 
+    @JsonBackReference
     @OneToOne
     @JoinColumn(name = "pedido_id")
     @MapsId
