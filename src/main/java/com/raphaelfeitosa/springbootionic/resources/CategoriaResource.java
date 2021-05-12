@@ -1,6 +1,7 @@
 package com.raphaelfeitosa.springbootionic.resources;
 
 import com.raphaelfeitosa.springbootionic.domain.Categoria;
+import com.raphaelfeitosa.springbootionic.dto.CategoriaDTO;
 import com.raphaelfeitosa.springbootionic.services.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/categorias")
@@ -41,6 +44,13 @@ public class CategoriaResource {
     public ResponseEntity<?> delete(@PathVariable Long id){
         categoriaService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<List<CategoriaDTO>> findAll(){
+        List<Categoria> listCategoria = categoriaService.findAll();
+        List<CategoriaDTO> listCategoriaDTO = listCategoria.stream().map(listDTO-> new CategoriaDTO(listDTO)).collect(Collectors.toList());
+        return ResponseEntity.ok().body(listCategoriaDTO);
     }
 
 }
