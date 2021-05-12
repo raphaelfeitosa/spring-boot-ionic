@@ -1,10 +1,9 @@
 package com.raphaelfeitosa.springbootionic.resources.exceptions;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class StandardError implements Serializable {
 
@@ -16,8 +15,6 @@ public class StandardError implements Serializable {
     private String error;
     private String message;
     private String path;
-
-    private List<FieldMessage> fields;
 
     public StandardError() {
 
@@ -73,11 +70,4 @@ public class StandardError implements Serializable {
         this.path = path;
     }
 
-    public List<FieldMessage> getFields() {
-        return fields;
-    }
-
-    public void setFields(List<FieldMessage> fields) {
-        this.fields = fields;
-    }
 }
