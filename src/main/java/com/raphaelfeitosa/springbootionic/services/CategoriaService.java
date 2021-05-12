@@ -1,6 +1,7 @@
 package com.raphaelfeitosa.springbootionic.services;
 
 import com.raphaelfeitosa.springbootionic.domain.Categoria;
+import com.raphaelfeitosa.springbootionic.dto.CategoriaDTO;
 import com.raphaelfeitosa.springbootionic.repositories.CategoriaRepository;
 import com.raphaelfeitosa.springbootionic.services.exceptions.DataIntegrityException;
 import com.raphaelfeitosa.springbootionic.services.exceptions.ObjectNotFoundException;
@@ -53,4 +54,8 @@ public class CategoriaService {
         PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
         return categoriaRepository.findAll(pageRequest);
     }
+    public Categoria fromDTO(CategoriaDTO categoriaDTO){
+        return new Categoria(categoriaDTO.getId(), categoriaDTO.getNome());
+}
+
 }
