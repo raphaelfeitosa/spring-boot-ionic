@@ -2,6 +2,7 @@ package com.raphaelfeitosa.springbootionic.resources;
 
 import com.raphaelfeitosa.springbootionic.domain.Cliente;
 import com.raphaelfeitosa.springbootionic.dto.ClienteDTO;
+import com.raphaelfeitosa.springbootionic.dto.ClienteNewDTO;
 import com.raphaelfeitosa.springbootionic.services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,14 +28,14 @@ public class ClienteResource {
         return ResponseEntity.ok().body(cliente);
     }
 
-//    @RequestMapping(method = RequestMethod.POST)
-//    public ResponseEntity<Void> insert(@Valid @RequestBody ClienteDTO clienteDTO){
-//        Cliente cliente = clienteService.fromDTO(clienteDTO);
-//        cliente = clienteService.insert(cliente);
-//        URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri()
-//                .path("/{id}").buildAndExpand(cliente.getId()).toUri();
-//        return ResponseEntity.created(uri).build();
-//    }
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDTO clienteNewDTO) throws IllegalAccessException {
+        Cliente cliente = clienteService.fromDTO(clienteNewDTO);
+        cliente = clienteService.insert(cliente);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri()
+                .path("/{id}").buildAndExpand(cliente.getId()).toUri();
+        return ResponseEntity.created(uri).build();
+    }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Void> update(@Valid @RequestBody ClienteDTO clienteDTO, @PathVariable Long id){

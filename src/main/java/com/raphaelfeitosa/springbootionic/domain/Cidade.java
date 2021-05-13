@@ -19,7 +19,6 @@ public class Cidade implements Serializable {
     private Estado estado;
 
     public Cidade(){
-
     }
 
     public Cidade(Long id, String nome, Estado estado) {
