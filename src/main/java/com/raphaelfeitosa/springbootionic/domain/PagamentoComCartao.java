@@ -1,5 +1,6 @@
 package com.raphaelfeitosa.springbootionic.domain;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.raphaelfeitosa.springbootionic.enums.EstadoPagamento;
 
 import javax.persistence.Entity;
@@ -7,6 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "pagamento_com_cartao")
+@JsonTypeName("pagamentoComCartao")
 public class PagamentoComCartao extends Pagamento{
 
     private static final long serialVersionUID = 1L;

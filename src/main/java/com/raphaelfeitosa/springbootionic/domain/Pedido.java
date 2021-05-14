@@ -4,9 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "pedidos")
@@ -18,8 +16,8 @@ public class Pedido implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd HH:mm:ss")
-    private LocalDateTime instante;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm")
+    private Date instante;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
     private Pagamento pagamento;
@@ -34,11 +32,11 @@ public class Pedido implements Serializable {
 
 
     @OneToMany(mappedBy = "id.pedido")
-    private Set<ItemPedido> itens = new HashSet<>();
+    private List<ItemPedido> itens = new ArrayList<>();
 
     public Pedido(){}
 
-    public Pedido(Long id, LocalDateTime instante, Cliente cliente, Endereco enderecoEntrega) {
+    public Pedido(Long id, Date instante, Cliente cliente, Endereco enderecoEntrega) {
         this.id = id;
         this.instante = instante;
         this.cliente = cliente;
@@ -61,11 +59,11 @@ public class Pedido implements Serializable {
         this.id = id;
     }
 
-    public LocalDateTime getInstante() {
+    public Date getInstante() {
         return instante;
     }
 
-    public void setInstante(LocalDateTime instante) {
+    public void setInstante(Date instante) {
         this.instante = instante;
     }
 
@@ -94,11 +92,11 @@ public class Pedido implements Serializable {
     }
 
 
-    public Set<ItemPedido> getItens() {
+    public List<ItemPedido> getItens() {
         return itens;
     }
 
-    public void setItens(Set<ItemPedido> itens) {
+    public void setItens(List<ItemPedido> itens) {
         this.itens = itens;
     }
 

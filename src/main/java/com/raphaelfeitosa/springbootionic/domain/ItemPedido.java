@@ -27,7 +27,7 @@ public class ItemPedido implements Serializable {
     public ItemPedido(Pedido pedido, Produto produto, Double desconto, Integer quantidade, Double preco) {
         this.id = id;
         id.setPedido(pedido);
-        id.setProduto((produto));
+        id.setProduto(produto);
         this.desconto = desconto;
         this.quantidade = quantidade;
         this.preco = preco;
@@ -45,7 +45,7 @@ public class ItemPedido implements Serializable {
         this.id = id;
     }
 
-    public Double getDesconto() {
+    public Double getDesconto(Double desconto) {
         return desconto;
     }
 
@@ -74,9 +74,13 @@ public class ItemPedido implements Serializable {
         return id.getPedido();
     }
 
+    public void setPedido(Pedido pedido){ id.setPedido(pedido);}
+
     public Produto getProduto(){
         return id.getProduto();
     }
+
+    public void setProduto(Produto produto){ id.setProduto(produto);}
 
     @Override
     public boolean equals(Object o) {
